@@ -1,3 +1,5 @@
+//format directive.js author by worldcoolguy using angular
+
 (function () {
     'use strict';
 

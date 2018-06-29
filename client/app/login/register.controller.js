@@ -43,7 +43,8 @@
               cellphone : vm.cellphone,
               customer_id : vm.selectTypeDocument.id + "-" + vm.document,
               username : vm.username
-            };            
+            };           
+            //insert google recaptcha 
             var $captcha = $( '#recaptcha' );
             var response = grecaptcha.getResponse();
             if (response.length === 0) {
