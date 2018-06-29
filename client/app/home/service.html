@@ -1,0 +1,15 @@
+<section class="page">
+    <section class="ui-section">
+      <div class="clearfix">
+        <h2 class="text-header">Seleccione el Tipo de Atención:</h2>
+      </div>
+      <div class="card bg-white" ng-click="serviceCtrl.navigateTo(service.id)" ng-repeat="service in serviceCtrl.listServices">
+          <div class="card-content">
+              <div class="card-title">
+                <md-icon class="material-icons icon-color">branding_watermark</md-icon>
+                <span>&nbsp;{{service.name}}</span>
+              </div>
+          </div>
+      </div>
+    </section>
+</section>

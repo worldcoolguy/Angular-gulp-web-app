@@ -1,0 +1,141 @@
+<!doctype html>
+<html class="no-js">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv='X-UA-Compatible' content='IE=edge'>
+        <title>BMatic Api</title>
+        <meta name="description" content="BMatic Api">
+        <meta name="keywords" content="BMatic Api">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+        <meta name="apple-mobile-web-app-capable" content="yes">
+        <meta name="apple-touch-fullscreen" content="yes">
+
+        <!-- google fonts -->
+        <script type="text/javascript">
+            WebFontConfig = {
+                google: { families: [ 'Roboto:100,300,400,400italic,500,700:latin' ] }
+            };
+            (function() {
+                var wf = document.createElement('script');
+                wf.src = 'bower_components/webfontloader/webfontloader.js';
+                wf.type = 'text/javascript';
+                wf.async = 'true';
+                var s = document.getElementsByTagName('script')[0];
+                s.parentNode.insertBefore(wf, s);
+            })();
+        </script>
+
+
+        <!-- Needs images, font... therefore can not be part of main.css -->
+        <link rel="stylesheet" href="styles/loader.css">
+        <link rel="stylesheet" href="vendors/material-design-icons/iconfont/material-icons.css" rel="stylesheet" >
+        <link rel="stylesheet" href="bower_components/font-awesome/css/font-awesome.min.css">
+
+        <link rel="stylesheet" href="bower_components/angular-ui-notification/dist/angular-ui-notification.min.css">
+        <!-- end Needs images -->
+
+            <!-- build:css({.tmp,client}) styles/main.css -->
+            <link rel="stylesheet" href="bower_components/angular-material/angular-material.min.css">
+            <link rel="stylesheet" href="styles/bootstrap.css">
+            <link rel="stylesheet" href="styles/ui.css">
+            <link rel="stylesheet" href="styles/app.css">
+            <link rel="stylesheet" href="styles/style.css">
+            <script src='https://www.google.com/recaptcha/api.js'></script>    
+            <!-- endbuild -->
+            <script src='https://www.google.com/recaptcha/api.js'></script>
+
+    </head>
+    <body data-ng-app="app"
+          id="app"
+          class="app"
+          data-custom-page
+          data-ng-controller="AppCtrl"
+          data-ng-class=" { 'layout-boxed': main.layout === 'boxed',
+                            'nav-collapsed-min': main.isMenuCollapsed }">
+        <div id="loader-container"></div>
+
+        <header data-ng-include=" 'app/layout/header.html' "
+                 id="header"
+                 class="header-container bg-success"
+                 data-ng-class="{ 'header-fixed': main.fixedHeader }"></header>
+
+        <div class="main-container"
+             data-ng-class="{ 'app-nav-horizontal': main.menu === 'horizontal' }">
+            <aside data-ng-include=" 'app/layout/sidebar.html' "
+                   id="nav-container"
+                   class="nav-container bg-dark"
+                   data-ng-class="{ 'nav-fixed': main.fixedSidebar,
+                                    'nav-horizontal': main.menu === 'horizontal',
+                                    'nav-vertical': main.menu === 'vertical' }">
+            </aside>
+
+            <div id="content" class="content-container">
+                <section data-ui-view
+                         class="view-container animate-fade-up"></section>
+            </div>
+
+        </div>        
+
+
+        <!-- build:js scripts/vendor.js -->
+        <script src="bower_components/jquery/dist/jquery.min.js"></script>
+        <script src="bower_components/angular/angular.min.js"></script>
+        <script src="bower_components/angular-animate/angular-animate.min.js"></script>
+        <script src="bower_components/angular-aria/angular-aria.min.js"></script>
+        <script src="bower_components/angular-messages/angular-messages.min.js"></script>
+        <script src="bower_components/angular-ui-router/release/angular-ui-router.min.js"></script>
+        <script src="bower_components/oclazyload/dist/ocLazyLoad.js"></script>
+        <!-- endbuild -->
+
+
+        <!-- build:js scripts/ui.js -->
+        <script src="bower_components/angular-translate/angular-translate.min.js"></script>
+        <script src="bower_components/angular-translate-loader-static-files/angular-translate-loader-static-files.min.js"></script>
+
+        <script src="bower_components/angular-material/angular-material.min.js"></script>
+
+        <script src="bower_components/angular-scroll/angular-scroll.min.js"></script>
+        <script src="bower_components/jquery.slimscroll/jquery.slimscroll.min.js"></script>
+
+        <script src="bower_components/angular-ui-notification/dist/angular-ui-notification.js"></script>
+        <!-- endbuild -->
+
+
+        <!-- build:js scripts/app.js -->
+        <!-- inject:js -->
+        <script src="app/app.module.js"></script>
+        <script src="app/booking/booking.module.js"></script>
+        <script src="app/core/core.module.js"></script>
+        <script src="app/home/home.module.js"></script>
+        <script src="app/layout/layout.module.js"></script>
+        <script src="app/login/login.module.js"></script>
+        <script src="app/ticket/ticket.module.js"></script>
+        <script src="app/booking/booking.controller.js"></script>
+        <script src="app/booking/booking.service.js"></script>
+        <script src="app/booking/bookings.controller.js"></script>
+        <script src="app/booking/branch.controller.js"></script>
+        <script src="app/core/app.config.js"></script>
+        <script src="app/core/app.controller.js"></script>
+        <script src="app/core/config.lazyload.js"></script>
+        <script src="app/core/config.route.js"></script>
+        <script src="app/core/i18n.js"></script>
+        <script src="app/home/home.directive.js"></script>
+        <script src="app/home/main.controller.js"></script>
+        <script src="app/home/main.service.js"></script>
+        <script src="app/home/service.controller.js"></script>
+        <script src="app/layout/layout.diretive.js"></script>
+        <script src="app/layout/loader.js"></script>
+        <script src="app/layout/sidebar.directive.js"></script>
+        <script src="app/login/login.directive.js"></script>
+        <script src="app/login/phoneformat.directive.js"></script>
+        <script src="app/login/register.controller.js"></script>
+        <script src="app/ticket/sector.controller.js"></script>
+        <script src="app/ticket/ticket.controller.js"></script>
+        <script src="app/ticket/ticket.service.js"></script>
+        <script src="app/ticket/tickets.controller.js"></script>
+        <script src="app/ticket/ticketsummary.controller.js"></script>
+        <script src="app/util/util.js"></script>
+        <!-- endinject -->
+        <!-- endbuild -->
+    </body>
+</html>

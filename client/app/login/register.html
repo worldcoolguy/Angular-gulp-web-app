@@ -1,0 +1,69 @@
+<script src='https://www.google.com/recaptcha/api.js'></script>
+<div class="page-signup">
+    <div class="wrapper-register">
+        <div class="main-body">
+            <div class="body-inner">
+                <div class="card bg-white">
+                    <div class="card-content">
+                        <section class="logo text-center">
+                            <h1><a href="#!/">Tiquete Virtual<br/> Banco Popular</a></h1>
+                        </section>
+                        <form class="form-horizontal" name="registerForm">
+                            <fieldset>
+                                <md-input-container class="full-width">
+                                    <label>Tipo Documento</label>
+                                    <md-select ng-model="registerCtrl.selectTypeDocument" aria-label="select" required>
+                                        <md-option
+                                            ng-repeat="typeDocument in registerCtrl.listTypeDocument"
+                                            ng-value="typeDocument"
+                                            ng-selected="{{typeDocument.id === registerCtrl.selectTypeDocument.id}}"> {{typeDocument.name}} </md-option>
+                                  </md-select>
+                                </md-input-container>
+                                <div class="form-group">
+                                    <div class="ui-input-group">
+                                        <input type="text" ng-model="registerCtrl.document" phoneformat phoneType="id" class="form-control" required>
+                                        <span class="input-bar"></span>
+                                        <label>N&uacute;mero de c&eacute;dula</label>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <div class="ui-input-group">
+                                      <input type="text" ng-model="registerCtrl.cellphone"  phoneformat phoneType="phone" class="form-control" required>
+                                      <span class="input-bar"></span>
+                                      <label>N° Celular</label>
+                                  </div>
+                                </div>
+                                <div class="form-group">
+                                    <div class="ui-input-group">
+                                        <input type="text" ng-model="registerCtrl.username" ng-minlength="5"  class="form-control" required>
+                                        <span class="input-bar"></span>
+                                        <label>Nombre Usuario</label>
+                                    </div>
+                                </div>
+                                <!--add recaptcha-->
+                                <div class="form-group">
+                                    <div class="ui-input-group">
+                                        <div class="row">
+                                            <div class="col-md-8">
+                                                <span class="msg-error error"></span>
+                                                <div id="recaptcha" class="g-recaptcha" data-sitekey="6Lf-UWEUAAAAAH-BijYA1sk2Hiu4nAFJGkI5ov-B"></div>
+                                                <!-- <div class="g-recaptcha" data-sitekey="6Lf2-GAUAAAAAK8O2daKlW_Bc8CGhvA25rsWZMeR" ng-model="registerCtrl.recaptcha"></div> -->
+                                            </div>
+                                            <div class="col-md-4">
+                                                <div class="card-action no-border text-right">
+                                                    <md-button class="md-raised btn-w-sm md-accent" ng-disabled="registerForm.$invalid" ng-click="registerCtrl.login();">Registar</md-button>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <!--secret key :6Lf2-GAUAAAAAG_v_Ynwa7qkotCK9oqGireHKpr_ -->
+                                    </div>
+                                </div>
+                                <!--end-->
+                            </fieldset>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

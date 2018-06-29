@@ -1,0 +1,121 @@
+<section class="page">
+    <section class="ui-section">
+        <div class="clearfix">
+            <h2 class="text-header">Mis tickets:</h2>
+        </div>
+        <div class="callout callout-info" ng-show="ticketsCtrl.listTickets === null">No tiene tickets generadas.</div>
+        <div class="row">
+            <div ng-class="ticketsCtrl.Screen" ng-repeat="ticket in ticketsCtrl.listTickets">
+                <div class="row box-header">
+                    <div class="col-xs-12" ng-if="ticket.status === 'WAITING'">
+                        <div class="row viewTimer">
+                            <div class="col-xs-6">
+                                <div class="row">
+                                    <div class="col-xs-6 SinPadding">
+                                        <i class="fa fa-group fa-3x" aria-hidden="true"></i><br>
+                                        <md-tooltip>Personas Restantes</md-tooltip>
+                                        <span>PERSONAS<br>RESTANTES</span>
+                                    </div>
+                                    <div class="col-xs-6 Position">
+                                        <span class="data">{{ticket.position}}</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-xs-6">
+                                <div class="row">
+                                    <div class="col-xs-6 SinPadding">
+                                        <i class="fa fa-clock-o fa-3x" aria-hidden="true"></i><br>
+                                        <md-tooltip>Tiempo de Espera</md-tooltip>
+                                        <span>ESTIMADO</span>
+                                    </div>
+                                    <div class="col-xs-6 TimeWait">
+                                        <span class="col-xs-12 SinPadding">
+                                    <md-tooltip>Estimado Mínimo - Máximo</md-tooltip>
+                                    {{ticket.low_estimated_time}} ~ {{ticket.high_estimated_time}} min
+                                  </span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="box col-xs-12">
+                      <div class="row padding-row">
+                        <div class="col-xs-6">
+                          <md-button ng-if="ticket.status !== 'ATTENDED'" class="md-icon-button" ng-click="ticketsCtrl.showTimer($event,ticket)">
+                            <span class="fa fa-refresh size-icon" ng-class="ticketsCtrl.updateTimer"></span>
+                            <md-tooltip>Actualizar Tiempo de Espera</md-tooltip>
+                          </md-button>
+                        </div>
+                        <div class="col-xs-3">
+                          <div class="padding-status">
+                            <span ng-show="ticket.status === 'WAITING'" class="label label-success">En espera</span>
+                            <span ng-show="ticket.status === 'CALLED'" class="label label-danger">Llamado</span>
+                            <span ng-show="ticket.status === 'INATTENTION'" class="label label-primary">En atención</span>
+                            <span ng-show="ticket.status === 'ATTENDED'" class="label label-default">Atendido</span>
+                          </div>
+                        </div>
+                        <div class="col-xs-3">
+                          <md-button ng-if="ticket.status === 'WAITING'" class="md-icon-button" ng-click="ticketsCtrl.cancelTicket($event,ticket)">
+                            <span class="fa fa-trash size-icon"></span>
+                            <md-tooltip>Cancelar Ticket</md-tooltip>
+                          </md-button>
+                        </div>
+                      </div>
+                            <div class="box-content">
+                                <div ng-repeat="print in ticket.print">
+                                    <div ng-if="print.content === ''" class="row line-white">
+                                    </div>
+                                    <div class="row" ng-if="print.content !== ''" ng-class="{'alignment-left':print.align === 'LEFT', 'alignment-center':print.align === 'CENTER', 'alignment-right':print.align === 'RIGHT'}">
+                                        <div ng-switch="print.font">
+                                            <span ng-switch-when="A_REGULAR" class="type-A">
+                                              {{print.previous}}{{print.content}}{{print.next}}
+                                            </span>
+                                            <span ng-switch-when="B_REGULAR" class="type-B">
+                          {{print.previous}}{{print.content}}{{print.next}}
+                        </span>
+                                            <span ng-switch-when="A_DOUBLE_HIGH" class="type-A-double-high">
+                          {{print.previous}}{{print.content}}{{print.next}}
+                        </span>
+                                            <span ng-switch-when="B_DOUBLE_HIGH" class="type-B-double-high">
+                          {{print.previous}}{{print.content}}{{print.next}}
+                        </span>
+                                            <span ng-switch-when="A_DOUBLE_WIDTH" class="type-A-double-width">
+                          {{print.previous}}{{print.content}}{{print.next}}
+                        </span>
+                                            <span ng-switch-when="B_DOUBLE_WIDTH" class="type-B-double-width">
+                          {{print.previous}}{{print.content}}{{print.next}}
+                        </span>
+                                            <span ng-switch-when="A_QUADRUPLE" class="type-A-quadruple">
+                          {{print.previous}}{{print.content}}{{print.next}}
+                        </span>
+                                            <span ng-switch-when="B_QUADRUPLE" class="type-B-quadruple">
+                          {{print.previous}}{{print.content}}{{print.next}}
+                        </span>
+                                            <span ng-switch-when="C_DOUBLE_HIGH" class="type-C-double-high">
+                          {{print.previous}}{{print.content}}{{print.next}}
+                        </span>
+                                            <span ng-switch-when="C_DOUBLE_WIDTH" class="type-C-double-width">
+                          {{print.previous}}{{print.content}}{{print.next}}
+                        </span>
+                                            <span ng-switch-default class="type-C-quadruple">
+                          {{print.previous}}{{print.content}}{{print.next}}
+                        </span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="md-padding actionButtons btn-float-next" layout="column">
+            <md-fab-speed-dial md-open="false" md-direction="up" class="md-scale md-fab-bottom-right md-hover-full speed-dial">
+                <md-fab-trigger>
+                    <md-button aria-label="menu" class="md-fab md-warn" ng-click="ticketsCtrl.addTicket();">
+                        <md-icon class="material-icons">add</md-icon>
+                    </md-button>
+                </md-fab-trigger>
+            </md-fab-speed-dial>
+        </div>
+    </section>
+</section>
