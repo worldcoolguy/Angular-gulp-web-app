@@ -1,4 +1,4 @@
-//format directive.js author by worldcoolguy using angular
+//format directive.js author by worldcoolguy using angular - Phoneformat
 
 (function () {
     'use strict';
@@ -12,7 +12,7 @@
             restrict: 'A',
             require: 'ngModel',
             link: function (scope, element, attr, ngModelCtrl) {
-                // console.log(attr);
+                console.log(attr);
                 var phoneParse = function (value) {
                     var numbers = value && value.replace(/-/g, "");
                     var regex = attr.phonetype === 'id' ?  /^\d{10}$/ : /^\d{8}$/;
@@ -23,6 +23,7 @@
                     return undefined;
                 }
                 var phoneFormat = function (value) {
+                    console.log(value);return;
                     var numbers = value && value.replace(/-/g,"");
                     var regex = attr.phonetype === 'id' ? /^(\d{2})(\d{4})(\d{4})$/ : /^(\d{4})(\d{4})$/
                     var matches = numbers && numbers.match(regex);
